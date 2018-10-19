@@ -1,13 +1,14 @@
 import React, { Component } from "react";
+import List from "./List/List";
 
-class List extends Component {
+class Lists extends Component {
   render() {
     return (
       <div>
-        <h1>Hello World!</h1>
+        <List />
       </div>
     );
   }
 }
 
-export default List;
+export default Lists;
