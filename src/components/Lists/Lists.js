@@ -6,14 +6,47 @@ import List from "./List/List";
 class Lists extends Component {
   constructor(props) {
     super(props);
+
+    // Local State
     this.state = {
+      listName: "",
       lists: []
     };
   }
 
+  // Gets list of list names from server and stores in local state
   componentDidMount = () => {
     axios.get("/api/lists").then(response => {
       this.setState({ lists: response.data });
+    });
+  };
+
+  // Tracks user's input and stores in local state
+  onChangeHandler = event => {
+    this.setState({ listName: event.target.value });
+  };
+
+  // Adds a new list name to the list of list names in server
+  addList = () => {
+    axios
+      .post("/api/lists", { listName: this.state.listName })
+      .then(response => {
+        this.setState({
+          lists: response.data
+        });
+      });
+  };
+
+  // Allows user to submit new list name by pressing enter
+  onSubmitHandler = event => {
+    // Prevents page from reloading everytime a submit occurs
+    event.preventDefault();
+
+    this.addList();
+
+    // resets local user input state
+    this.setState({
+      listName: ""
     });
   };
 
@@ -28,6 +61,14 @@ class Lists extends Component {
       <div>
         {/* <List /> */}
         <h2>Lists</h2>
+        <form onSubmit={this.onSubmitHandler}>
+          <input
+            placeholder="Create a new list!"
+            value={this.state.listName}
+            onChange={this.onChangeHandler}
+          />
+          <button>Create!</button>
+        </form>
         {displayLists}
       </div>
     );

@@ -8,13 +8,13 @@ import "./sass/css/main.css";
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="app">
         <header>
           <h1>Chello</h1>
         </header>
-        <body>
+        <div>
           <Lists />
-        </body>
+        </div>
       </div>
     );
   }

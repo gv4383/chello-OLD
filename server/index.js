@@ -15,6 +15,9 @@ app.use(cors());
 // Gets list of lists
 app.get("/api/lists", lists_cntrl.getLists);
 
+// Adds a new list name to list of lists
+app.post("/api/lists", lists_cntrl.createList);
+
 // Sets port which the server runs on
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
