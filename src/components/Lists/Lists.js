@@ -54,7 +54,7 @@ class Lists extends Component {
     const { lists } = this.state;
 
     const displayLists = lists.map((list, i) => {
-      return <p key={i}>{list}</p>;
+      return <p key={i}>{list.listName}</p>;
     });
 
     return (
