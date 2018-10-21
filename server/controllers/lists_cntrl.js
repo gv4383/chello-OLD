@@ -22,10 +22,12 @@ let test2 = {
 let lists = [test0, test1, test2];
 let id = 2;
 
+// Sends the list of list names to the front end
 const getLists = (req, res) => {
   res.status(200).send(lists);
 };
 
+// Adds a new list name to the list of list names
 const createList = (req, res) => {
   const { listName } = req.body;
   id++;
@@ -40,7 +42,17 @@ const createList = (req, res) => {
   res.status(200).send(lists);
 };
 
+// Deletes a list name from the list of list names
+const deleteList = (req, res) => {
+  const { id } = req.params;
+
+  let listIndex = lists.findIndex(list => list.id == id);
+  lists.splice(listIndex, 1);
+  res.status(200).send(lists);
+};
+
 module.exports = {
   getLists,
-  createList
+  createList,
+  deleteList
 };

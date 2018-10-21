@@ -18,6 +18,9 @@ app.get("/api/lists", lists_cntrl.getLists);
 // Adds a new list name to list of lists
 app.post("/api/lists", lists_cntrl.createList);
 
+// Deletes a list name from the list of lists
+app.delete("/api/lists/:id", lists_cntrl.deleteList);
+
 // Sets port which the server runs on
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
