@@ -37,6 +37,14 @@ class Lists extends Component {
       });
   };
 
+  deleteList = id => {
+    axios.delete(`/api/lists/${id}`).then(response => {
+      this.setState({
+        lists: response.data
+      });
+    });
+  };
+
   // Allows user to submit new list name by pressing enter
   onSubmitHandler = event => {
     // Prevents page from reloading everytime a submit occurs
@@ -53,8 +61,13 @@ class Lists extends Component {
   render() {
     const { lists } = this.state;
 
-    const displayLists = lists.map((list, i) => {
-      return <p key={i}>{list.listName}</p>;
+    const displayLists = lists.map(list => {
+      return (
+        <div key={list.id}>
+          <h3 onClick={() => this.deleteList(list.id)}>{list.listName}</h3>
+          <p>{list.description}</p>
+        </div>
+      );
     });
 
     return (

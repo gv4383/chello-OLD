@@ -3,19 +3,19 @@
 let test0 = {
   id: 0,
   listName: "Hello",
-  description: ""
+  description: "yep"
 };
 
 let test1 = {
   id: 1,
   listName: "World",
-  description: ""
+  description: "wow"
 };
 
 let test2 = {
   id: 2,
   listName: ":)",
-  description: ""
+  description: "why"
 };
 
 // Contains all the different lists someone may create
