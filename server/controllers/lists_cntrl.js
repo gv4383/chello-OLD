@@ -22,12 +22,12 @@ let test2 = {
 let lists = [test0, test1, test2];
 let id = 2;
 
-// Sends the list of list names to the front end
+// Sends the list of lists to the front end
 const getLists = (req, res) => {
   res.status(200).send(lists);
 };
 
-// Adds a new list name to the list of list names
+// Adds a new list to the list of lists
 const createList = (req, res) => {
   const { listName } = req.body;
   id++;

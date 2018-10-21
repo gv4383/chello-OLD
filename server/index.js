@@ -15,10 +15,10 @@ app.use(cors());
 // Gets list of lists
 app.get("/api/lists", lists_cntrl.getLists);
 
-// Adds a new list name to list of lists
+// Adds a new list to list of lists
 app.post("/api/lists", lists_cntrl.createList);
 
-// Deletes a list name from the list of lists
+// Deletes a list from the list of lists
 app.delete("/api/lists/:id", lists_cntrl.deleteList);
 
 // Sets port which the server runs on
