@@ -64,8 +64,6 @@ class Lists extends Component {
     const displayLists = lists.map(list => {
       return (
         <div key={list.id}>
-          {/* <h3 onClick={() => this.deleteList(list.id)}>{list.listName}</h3>
-          <p>{list.description}</p> */}
           <List
             click={() => this.deleteList(list.id)}
             listName={list.listName}
