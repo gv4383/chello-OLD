@@ -77,7 +77,6 @@ class Lists extends Component {
 
     return (
       <div>
-        {/* <List /> */}
         <h2>Lists</h2>
         <form onSubmit={this.onSubmitHandler}>
           <input
