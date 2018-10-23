@@ -65,7 +65,7 @@ class Lists extends Component {
       return (
         <div key={list.id}>
           <List
-            click={() => this.deleteList(list.id)}
+            deleteList={() => this.deleteList(list.id)}
             listName={list.listName}
             listDescription={list.description}
           />

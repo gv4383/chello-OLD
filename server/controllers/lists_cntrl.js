@@ -35,10 +35,20 @@ const createList = (req, res) => {
   let newListName = {
     id,
     listName,
-    description: ""
+    description: "No description :("
   };
 
   lists.push(newListName);
+  res.status(200).send(lists);
+};
+
+// Edits a list's description
+const editListDescription = (req, res) => {
+  const { id } = req.params;
+  const { description } = req.body;
+
+  let listIndex = lists.findIndex(list => list.id == id);
+  lists[listIndex].description = description;
   res.status(200).send(lists);
 };
 
@@ -54,5 +64,6 @@ const deleteList = (req, res) => {
 module.exports = {
   getLists,
   createList,
+  editListDescription,
   deleteList
 };

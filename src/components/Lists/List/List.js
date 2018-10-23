@@ -6,11 +6,11 @@ class List extends Component {
   }
 
   render() {
-    const { click, listName, listDescription } = this.props;
+    const { deleteList, listName, listDescription } = this.props;
 
     return (
       <div>
-        <h3 onClick={click}>{listName}</h3>
+        <h3 onClick={deleteList}>{listName}</h3>
         <p>{listDescription}</p>
       </div>
     );
