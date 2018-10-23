@@ -37,6 +37,15 @@ class Lists extends Component {
       });
   };
 
+  // Edits the list's description
+  editListDescription = (id, description) => {
+    axios.put(`/api/lists/${id}`, { description }).then(response => {
+      this.setState({
+        lists: response.data
+      });
+    });
+  };
+
   deleteList = id => {
     axios.delete(`/api/lists/${id}`).then(response => {
       this.setState({
@@ -65,9 +74,11 @@ class Lists extends Component {
       return (
         <div key={list.id}>
           <List
+            listId={list.id}
             deleteList={() => this.deleteList(list.id)}
             listName={list.listName}
             listDescription={list.description}
+            editDescription={this.editListDescription}
           />
         </div>
       );
