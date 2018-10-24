@@ -45,8 +45,9 @@ class List extends Component {
     if (!editing) {
       return (
         <div>
-          <h3 onClick={deleteList}>{listName}</h3>
+          <h3>{listName}</h3>
           <p onClick={this.toggleEditHandler}>{listDescription}</p>
+          <button onClick={deleteList}>Delete List</button>
         </div>
       );
     } else {
