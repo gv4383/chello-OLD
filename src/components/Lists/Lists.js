@@ -46,6 +46,7 @@ class Lists extends Component {
     });
   };
 
+  // Deletes a list
   deleteList = id => {
     axios.delete(`/api/lists/${id}`).then(response => {
       this.setState({
@@ -70,6 +71,7 @@ class Lists extends Component {
   render() {
     const { lists } = this.state;
 
+    // Iterates through lists array in local state and renders a List component
     const displayLists = lists.map(list => {
       return (
         <div key={list.id}>
