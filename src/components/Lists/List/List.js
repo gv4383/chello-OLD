@@ -6,7 +6,9 @@ class List extends Component {
     super(props);
 
     this.state = {
-      editing: false,
+      editName: false,
+      editDescription: false,
+      listNameInput: this.props.listName,
       listDescriptionInput: this.props.listDescription
     };
   }
@@ -16,45 +18,87 @@ class List extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  // Allows editing on a list's name
+  toggleEditNameHandler = () => {
+    this.setState({ editName: true });
+  };
+
   // Allows editing on a list's desccription
-  toggleEditHandler = () => {
-    this.setState({ editing: true });
+  toggleEditDescriptionHandler = () => {
+    this.setState({ editDescription: true });
   };
 
   // Sets editing to false
   cancelEditHandler = () => {
-    this.setState({ editing: false });
+    this.setState({
+      editName: false,
+      editDescription: false
+    });
   };
 
   // Curry submit handler so that it can take additional arguments (id and description)
-  onSubmitHandler = (id, description) => event => {
+  onSubmitHandler = (id, body) => event => {
     // Prevents page from reloading everytime a submit occurs
     event.preventDefault();
 
-    // Calls editDescription function from props
-    this.props.editDescription(id, description);
+    if (event.target.name === "editNameInput") {
+      // Calls editName function from props
+      this.props.editListName(id, body);
 
-    // Sets editing state back to false
-    this.setState({ editing: false });
+      // Sets editing state back to false
+      this.setState({ editName: false });
+    } else if (event.target.name === "editDescriptionInput") {
+      // Calls editDescription function from props
+      this.props.editDescription(id, body);
+
+      // Sets editing state back to false
+      this.setState({ editDescription: false });
+    }
   };
 
   render() {
     const { deleteList, listId, listName, listDescription } = this.props;
-    const { editing, listDescriptionInput } = this.state;
+    const {
+      editName,
+      editDescription,
+      listNameInput,
+      listDescriptionInput
+    } = this.state;
 
-    if (!editing) {
+    if (!editDescription && !editName) {
       return (
         <div>
-          <h3>{listName}</h3>
-          <p onClick={this.toggleEditHandler}>{listDescription}</p>
+          <h3 onClick={this.toggleEditNameHandler}>{listName}</h3>
+          <p onClick={this.toggleEditDescriptionHandler}>{listDescription}</p>
           <button onClick={deleteList}>Delete List</button>
         </div>
       );
-    } else {
+    } else if (editName) {
+      return (
+        <div>
+          <form
+            name="editNameInput"
+            onSubmit={this.onSubmitHandler(listId, listNameInput)}
+          >
+            <input
+              value={listNameInput}
+              name="listNameInput"
+              onChange={this.onChangeHandler}
+            />
+            <button>Submit</button>
+          </form>
+          <button onClick={this.cancelEditHandler}>Cancel</button>
+          <p>{listDescription}</p>
+        </div>
+      );
+    } else if (editDescription) {
       return (
         <div>
           <h3>{listName}</h3>
-          <form onSubmit={this.onSubmitHandler(listId, listDescriptionInput)}>
+          <form
+            name="editDescriptionInput"
+            onSubmit={this.onSubmitHandler(listId, listDescriptionInput)}
+          >
             <input
               value={listDescriptionInput}
               name="listDescriptionInput"

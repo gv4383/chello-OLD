@@ -41,6 +41,16 @@ const createList = (req, res) => {
   res.status(200).send(lists);
 };
 
+// Edits a list's name
+const editListName = (req, res) => {
+  const { id } = req.params;
+  const { listName } = req.body;
+
+  let listIndex = lists.findIndex(list => list.id == id);
+  lists[listIndex].listName = listName;
+  res.status(200).send(lists);
+};
+
 // Edits a list's description
 const editListDescription = (req, res) => {
   const { id } = req.params;
@@ -63,6 +73,7 @@ const deleteList = (req, res) => {
 module.exports = {
   getLists,
   createList,
+  editListName,
   editListDescription,
   deleteList
 };

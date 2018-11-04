@@ -35,13 +35,24 @@ class Lists extends Component {
     });
   };
 
-  // Edits the list's description
-  editListDescription = (id, description) => {
-    axios.put(`/api/lists/${id}`, { description }).then(response => {
+  // Edits the list's name
+  editListName = (id, listName) => {
+    axios.put(`/api/lists/name/${id}`, { listName }).then(response => {
       this.setState({
         lists: response.data
       });
     });
+  };
+
+  // Edits the list's description
+  editListDescription = (id, description) => {
+    axios
+      .put(`/api/lists/description/${id}`, { description })
+      .then(response => {
+        this.setState({
+          lists: response.data
+        });
+      });
   };
 
   // Deletes a list
@@ -75,6 +86,7 @@ class Lists extends Component {
             deleteList={() => this.deleteList(list.id)}
             listName={list.listName}
             listDescription={list.description}
+            editListName={this.editListName}
             editDescription={this.editListDescription}
           />
         </div>
