@@ -29,12 +29,11 @@ const getLists = (req, res) => {
 
 // Adds a new list to the list of lists
 const createList = (req, res) => {
-  const { listName } = req.body;
   id++;
 
   let newListName = {
     id,
-    listName,
+    listName: "New List",
     description: "No description :("
   };
 

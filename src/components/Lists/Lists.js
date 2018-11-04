@@ -28,13 +28,11 @@ class Lists extends Component {
 
   // Adds a new list name to the list of list names in server
   addList = () => {
-    axios
-      .post("/api/lists", { listName: this.state.listName })
-      .then(response => {
-        this.setState({
-          lists: response.data
-        });
+    axios.post("/api/lists").then(response => {
+      this.setState({
+        lists: response.data
       });
+    });
   };
 
   // Edits the list's description
@@ -55,11 +53,8 @@ class Lists extends Component {
     });
   };
 
-  // Allows user to submit new list name by pressing enter
-  onSubmitHandler = event => {
-    // Prevents page from reloading everytime a submit occurs
-    event.preventDefault();
-
+  // Executes when a button is clicked
+  onClickHandler = () => {
     this.addList();
 
     // resets local user input state
@@ -89,14 +84,7 @@ class Lists extends Component {
     return (
       <div>
         <h2>Lists</h2>
-        <form onSubmit={this.onSubmitHandler}>
-          <input
-            placeholder="Create a new list!"
-            value={this.state.listName}
-            onChange={this.onChangeHandler}
-          />
-          <button>Create!</button>
-        </form>
+        <button onClick={this.onClickHandler}>Add New List!</button>
         {displayLists}
       </div>
     );
