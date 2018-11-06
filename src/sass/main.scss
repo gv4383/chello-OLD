@@ -22,3 +22,11 @@ header {
   color: white;
   text-align: center;
 }
+
+.lists-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  align-content: space-around;
+}

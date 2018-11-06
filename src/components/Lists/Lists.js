@@ -97,7 +97,7 @@ class Lists extends Component {
       <div>
         <h2>Lists</h2>
         <button onClick={this.onClickHandler}>Add New List!</button>
-        {displayLists}
+        <div className="lists-container">{displayLists}</div>
       </div>
     );
   }
