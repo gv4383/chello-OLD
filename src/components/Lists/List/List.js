@@ -67,7 +67,7 @@ class List extends Component {
 
     if (!editDescription && !editName) {
       return (
-        <div>
+        <div className="individual-list">
           <h3 onClick={this.toggleEditNameHandler}>{listName}</h3>
           <p onClick={this.toggleEditDescriptionHandler}>{listDescription}</p>
           <button onClick={deleteList}>Delete List</button>
@@ -75,7 +75,7 @@ class List extends Component {
       );
     } else if (editName) {
       return (
-        <div>
+        <div className="individual-list">
           <form
             name="editNameInput"
             onSubmit={this.onSubmitHandler(listId, listNameInput)}
@@ -93,7 +93,7 @@ class List extends Component {
       );
     } else if (editDescription) {
       return (
-        <div>
+        <div className="individual-list">
           <h3>{listName}</h3>
           <form
             name="editDescriptionInput"
