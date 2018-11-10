@@ -2,17 +2,20 @@
 
 let test0 = {
   id: 0,
-  listName: "Hello"
+  listName: "Hello",
+  todoList: []
 };
 
 let test1 = {
   id: 1,
-  listName: "World"
+  listName: "World",
+  todoList: []
 };
 
 let test2 = {
   id: 2,
-  listName: ":)"
+  listName: ":)",
+  todoList: []
 };
 
 // Contains all the different lists someone may create
@@ -30,7 +33,8 @@ const createList = (req, res) => {
 
   let newListName = {
     id,
-    listName: "New List"
+    listName: "New List",
+    todoList: []
   };
 
   lists.push(newListName);
