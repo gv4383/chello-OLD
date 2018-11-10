@@ -6,7 +6,8 @@ class List extends Component {
 
     this.state = {
       editName: false,
-      listNameInput: this.props.listName
+      listNameInput: this.props.listName,
+      todoList: this.props.todoList
     };
   }
 
@@ -41,7 +42,15 @@ class List extends Component {
 
   render() {
     const { deleteList, listId, listName } = this.props;
-    const { editName, listNameInput } = this.state;
+    const { editName, listNameInput, todoList } = this.state;
+
+    const displayTodoList = todoList.map((listItem, i) => {
+      return (
+        <div key={i}>
+          <p>{listItem}</p>
+        </div>
+      );
+    });
 
     if (editName) {
       return (
@@ -64,6 +73,7 @@ class List extends Component {
       return (
         <div className="individual-list">
           <h3 onClick={this.toggleEditNameHandler}>{listName}</h3>
+          {todoList && displayTodoList}
           <button onClick={deleteList}>Delete List</button>
         </div>
       );

@@ -74,8 +74,8 @@ class Lists extends Component {
             listId={list.id}
             deleteList={() => this.deleteList(list.id)}
             listName={list.listName}
+            todoList={list.todoList}
             editListName={this.editListName}
-            editDescription={this.editListDescription}
           />
         </div>
       );
