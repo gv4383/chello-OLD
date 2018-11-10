@@ -2,20 +2,17 @@
 
 let test0 = {
   id: 0,
-  listName: "Hello",
-  description: "yep"
+  listName: "Hello"
 };
 
 let test1 = {
   id: 1,
-  listName: "World",
-  description: "wow"
+  listName: "World"
 };
 
 let test2 = {
   id: 2,
-  listName: ":)",
-  description: "why"
+  listName: ":)"
 };
 
 // Contains all the different lists someone may create
@@ -33,8 +30,7 @@ const createList = (req, res) => {
 
   let newListName = {
     id,
-    listName: "New List",
-    description: "No description :("
+    listName: "New List"
   };
 
   lists.push(newListName);
@@ -51,16 +47,6 @@ const editListName = (req, res) => {
   res.status(200).send(lists);
 };
 
-// Edits a list's description
-const editListDescription = (req, res) => {
-  const { id } = req.params;
-  const { description } = req.body;
-
-  let listIndex = lists.findIndex(list => list.id == id);
-  lists[listIndex].description = description;
-  res.status(200).send(lists);
-};
-
 // Deletes a list name from the list of list names
 const deleteList = (req, res) => {
   const { id } = req.params;
@@ -74,6 +60,5 @@ module.exports = {
   getLists,
   createList,
   editListName,
-  editListDescription,
   deleteList
 };

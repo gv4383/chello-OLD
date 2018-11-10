@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import Lists from "./components/Lists/Lists";
 
 // import "./App.css";

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 class List extends Component {
   constructor(props) {
@@ -7,9 +6,7 @@ class List extends Component {
 
     this.state = {
       editName: false,
-      editDescription: false,
-      listNameInput: this.props.listName,
-      listDescriptionInput: this.props.listDescription
+      listNameInput: this.props.listName
     };
   }
 
@@ -23,16 +20,10 @@ class List extends Component {
     this.setState({ editName: true });
   };
 
-  // Allows editing on a list's desccription
-  toggleEditDescriptionHandler = () => {
-    this.setState({ editDescription: true });
-  };
-
   // Sets editing to false
   cancelEditHandler = () => {
     this.setState({
-      editName: false,
-      editDescription: false
+      editName: false
     });
   };
 
@@ -41,39 +32,18 @@ class List extends Component {
     // Prevents page from reloading everytime a submit occurs
     event.preventDefault();
 
-    if (event.target.name === "editNameInput") {
-      // Calls editName function from props
-      this.props.editListName(id, body);
+    // Calls editName function from props
+    this.props.editListName(id, body);
 
-      // Sets editing state back to false
-      this.setState({ editName: false });
-    } else if (event.target.name === "editDescriptionInput") {
-      // Calls editDescription function from props
-      this.props.editDescription(id, body);
-
-      // Sets editing state back to false
-      this.setState({ editDescription: false });
-    }
+    // Sets editing state back to false
+    this.setState({ editName: false });
   };
 
   render() {
-    const { deleteList, listId, listName, listDescription } = this.props;
-    const {
-      editName,
-      editDescription,
-      listNameInput,
-      listDescriptionInput
-    } = this.state;
+    const { deleteList, listId, listName } = this.props;
+    const { editName, listNameInput } = this.state;
 
-    if (!editDescription && !editName) {
-      return (
-        <div className="individual-list">
-          <h3 onClick={this.toggleEditNameHandler}>{listName}</h3>
-          <p onClick={this.toggleEditDescriptionHandler}>{listDescription}</p>
-          <button onClick={deleteList}>Delete List</button>
-        </div>
-      );
-    } else if (editName) {
+    if (editName) {
       return (
         <div className="individual-list">
           <form
@@ -88,25 +58,13 @@ class List extends Component {
             <button>Submit</button>
           </form>
           <button onClick={this.cancelEditHandler}>Cancel</button>
-          <p>{listDescription}</p>
         </div>
       );
-    } else if (editDescription) {
+    } else {
       return (
         <div className="individual-list">
-          <h3>{listName}</h3>
-          <form
-            name="editDescriptionInput"
-            onSubmit={this.onSubmitHandler(listId, listDescriptionInput)}
-          >
-            <input
-              value={listDescriptionInput}
-              name="listDescriptionInput"
-              onChange={this.onChangeHandler}
-            />
-            <button>Submit</button>
-          </form>
-          <button onClick={this.cancelEditHandler}>Cancel</button>
+          <h3 onClick={this.toggleEditNameHandler}>{listName}</h3>
+          <button onClick={deleteList}>Delete List</button>
         </div>
       );
     }

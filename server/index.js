@@ -21,9 +21,6 @@ app.post("/api/lists", lists_cntrl.createList);
 // Edits a list's name
 app.put("/api/lists/name/:id", lists_cntrl.editListName);
 
-// Edits a list's description
-app.put("/api/lists/description/:id", lists_cntrl.editListDescription);
-
 // Deletes a list from the list of lists
 app.delete("/api/lists/:id", lists_cntrl.deleteList);
 
