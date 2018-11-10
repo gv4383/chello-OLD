@@ -3,19 +3,19 @@
 let test0 = {
   id: 0,
   listName: "Hello",
-  todoList: []
+  todoList: ["Say hello", "wave"]
 };
 
 let test1 = {
   id: 1,
   listName: "World",
-  todoList: []
+  todoList: ["Reduce", "Reuse", "Recycle"]
 };
 
 let test2 = {
   id: 2,
   listName: ":)",
-  todoList: []
+  todoList: ["Don't forget to smile!"]
 };
 
 // Contains all the different lists someone may create
