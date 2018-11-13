@@ -44,6 +44,7 @@ class List extends Component {
     const { deleteList, listId, listName } = this.props;
     const { editName, listNameInput, todoList } = this.state;
 
+    // Iterates through todoList array in local state and renders and renders the todo items for that specific list
     const displayTodoList = todoList.map((listItem, i) => {
       return (
         <div key={i}>
