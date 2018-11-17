@@ -1,5 +1,6 @@
 /****** LISTS CONTROLLER ******/
 
+// Test data to send to front end
 let test0 = {
   id: 0,
   listName: "Hello",
