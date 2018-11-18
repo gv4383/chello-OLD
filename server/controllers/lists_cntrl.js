@@ -61,9 +61,21 @@ const deleteList = (req, res) => {
   res.status(200).send(lists);
 };
 
+const deleteItem = (req, res) => {
+  const { listId, listItemId } = req.params;
+
+  // Gets index of the requested list
+  let listIndex = lists.findIndex(list => list.id == listId);
+
+  // Goes to the specified list and splices the list item at the specified index of the array
+  lists[listIndex].todoList.splice(listItemId, 1);
+  res.status(200).send(lists);
+};
+
 module.exports = {
   getLists,
   createList,
   editListName,
-  deleteList
+  deleteList,
+  deleteItem
 };

@@ -12,6 +12,7 @@ const app = express();
 app.use(json());
 app.use(cors());
 
+/****** Lists ******/
 // Gets list of lists
 app.get("/api/lists", lists_cntrl.getLists);
 
@@ -23,6 +24,12 @@ app.put("/api/lists/name/:id", lists_cntrl.editListName);
 
 // Deletes a list from the list of lists
 app.delete("/api/lists/:id", lists_cntrl.deleteList);
+/****** Lists ******/
+
+/****** List ******/
+// Deletes a specified list item from the specified list
+app.delete("/api/lists/:listId/listItem/:listItemId", lists_cntrl.deleteItem);
+/****** List ******/
 
 // Sets port which the server runs on
 const port = process.env.PORT || 3001;
