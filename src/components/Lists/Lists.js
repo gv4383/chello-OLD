@@ -26,6 +26,16 @@ class Lists extends Component {
     this.setState({ listName: event.target.value });
   };
 
+  // Executes when a button is clicked
+  onClickHandler = () => {
+    this.addList();
+
+    // resets local user input state
+    this.setState({
+      listName: ""
+    });
+  };
+
   // Adds a new list name to the list of list names in server
   addList = () => {
     axios.post("/api/lists").then(response => {
@@ -53,13 +63,11 @@ class Lists extends Component {
     });
   };
 
-  // Executes when a button is clicked
-  onClickHandler = () => {
-    this.addList();
-
-    // resets local user input state
-    this.setState({
-      listName: ""
+  deleteListItem = (listId, itemId) => {
+    axios.delete(`/api/lists/${listId}/listItem/${itemId}`).then(response => {
+      this.setState({
+        lists: response.data
+      });
     });
   };
 
@@ -76,6 +84,7 @@ class Lists extends Component {
             listName={list.listName}
             todoList={list.todoList}
             editListName={this.editListName}
+            deleteListItem={this.deleteListItem}
           />
         </div>
       );

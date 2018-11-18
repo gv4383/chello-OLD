@@ -40,6 +40,13 @@ class List extends Component {
     this.setState({ editName: false });
   };
 
+  onClickHandler = itemId => {
+    const { listId, deleteListItem } = this.props;
+    console.log(`Click on list: ${this.props.listId}, item: ${itemId}`);
+
+    deleteListItem(listId, itemId);
+  };
+
   render() {
     const { deleteList, listId, listName } = this.props;
     const { editName, listNameInput, todoList } = this.state;
@@ -48,7 +55,7 @@ class List extends Component {
     const displayTodoList = todoList.map((listItem, i) => {
       return (
         <div key={i}>
-          <p>{listItem}</p>
+          <p onClick={() => this.onClickHandler(i)}>{listItem}</p>
         </div>
       );
     });
