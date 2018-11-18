@@ -75,6 +75,7 @@ class List extends Component {
         <div className="individual-list">
           <h3 onClick={this.toggleEditNameHandler}>{listName}</h3>
           {todoList && displayTodoList}
+          <button>Add Item</button>
           <button onClick={deleteList}>Delete List</button>
         </div>
       );
