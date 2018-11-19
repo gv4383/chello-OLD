@@ -39,6 +39,7 @@ class List extends Component {
     this.setState({ editName: false });
   };
 
+  // Deletes a list item when the item is clicked
   onClickHandler = itemId => {
     const { listId, deleteListItem } = this.props;
     console.log(`Click on list: ${this.props.listId}, item: ${itemId}`);
