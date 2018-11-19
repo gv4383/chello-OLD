@@ -6,6 +6,7 @@ class List extends Component {
 
     this.state = {
       editName: false,
+      addItem: false,
       listNameInput: this.props.listName
     };
   }
@@ -40,27 +41,33 @@ class List extends Component {
   };
 
   // Deletes a list item when the item is clicked
-  onClickHandler = itemId => {
+  deleteOnClickHandler = itemId => {
     const { listId, deleteListItem } = this.props;
     console.log(`Click on list: ${this.props.listId}, item: ${itemId}`);
 
     deleteListItem(listId, itemId);
   };
 
+  toggleAddOnClickHandler = () => {
+    console.log("Yay, you clicked the 'Add Item' button!");
+
+    this.setState({ addItem: true });
+  };
+
   render() {
     const { deleteList, listId, listName, todoList } = this.props;
-    const { editName, listNameInput } = this.state;
+    const { editName, addItem, listNameInput } = this.state;
 
     // Iterates through todoList array in local state and renders and renders the todo items for that specific list
     const displayTodoList = todoList.map((listItem, i) => {
       return (
         <div key={i}>
-          <p onClick={() => this.onClickHandler(i)}>{listItem}</p>
+          <p onClick={() => this.deleteOnClickHandler(i)}>{listItem}</p>
         </div>
       );
     });
 
-    if (editName) {
+    if (editName && !addItem) {
       return (
         <div className="individual-list">
           <form
@@ -77,12 +84,23 @@ class List extends Component {
           <button onClick={this.cancelEditHandler}>Cancel</button>
         </div>
       );
+    } else if (!editName && addItem) {
+      return (
+        <div className="individual-list">
+          <h3>{listName}</h3>
+          {todoList && displayTodoList}
+          <input placeholder="Enter a new to-do item." />
+          <button>Add!</button>
+          <button>Cancel</button>
+          <button onClick={deleteList}>Delete List</button>
+        </div>
+      );
     } else {
       return (
         <div className="individual-list">
           <h3 onClick={this.toggleEditNameHandler}>{listName}</h3>
           {todoList && displayTodoList}
-          <button>Add Item</button>
+          <button onClick={this.toggleAddOnClickHandler}>Add Item</button>
           <button onClick={deleteList}>Delete List</button>
         </div>
       );
