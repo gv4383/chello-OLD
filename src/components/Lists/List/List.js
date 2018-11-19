@@ -49,9 +49,10 @@ class List extends Component {
   };
 
   toggleAddOnClickHandler = () => {
+    const { addItem } = this.state;
     console.log("Yay, you clicked the 'Add Item' button!");
 
-    this.setState({ addItem: true });
+    this.setState({ addItem: !addItem });
   };
 
   render() {
@@ -91,7 +92,7 @@ class List extends Component {
           {todoList && displayTodoList}
           <input placeholder="Enter a new to-do item." />
           <button>Add!</button>
-          <button>Cancel</button>
+          <button onClick={this.toggleAddOnClickHandler}>Cancel</button>
           <button onClick={deleteList}>Delete List</button>
         </div>
       );
