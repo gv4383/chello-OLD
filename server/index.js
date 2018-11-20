@@ -27,6 +27,9 @@ app.delete("/api/lists/:id", lists_cntrl.deleteList);
 /****** Lists ******/
 
 /****** List ******/
+// Adds a new to-do list item to the specified list
+app.put("/api/lists/:listId", lists_cntrl.addItem);
+
 // Deletes a specified list item from the specified list
 app.delete("/api/lists/:listId/listItem/:listItemId", lists_cntrl.deleteItem);
 /****** List ******/

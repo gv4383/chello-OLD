@@ -61,6 +61,16 @@ const deleteList = (req, res) => {
   res.status(200).send(lists);
 };
 
+const addItem = (req, res) => {
+  const { listId } = req.params;
+  const { todoList } = req.body;
+
+  let listIndex = lists.findIndex(list => list.id == listId);
+
+  lists[listIndex].todoList = todoList;
+  res.status(200).send(lists);
+};
+
 const deleteItem = (req, res) => {
   const { listId, listItemId } = req.params;
 
@@ -77,5 +87,6 @@ module.exports = {
   createList,
   editListName,
   deleteList,
+  addItem,
   deleteItem
 };
