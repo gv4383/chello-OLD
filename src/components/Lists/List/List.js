@@ -48,10 +48,12 @@ class List extends Component {
     deleteListItem(listId, itemId);
   };
 
+  // Toggles conditional rendering that allows user to input a new to-do list item
   toggleAddOnClickHandler = () => {
     const { addItem } = this.state;
     console.log("Yay, you clicked the 'Add Item' button!");
 
+    // Toggles addItem to its opposite state
     this.setState({ addItem: !addItem });
   };
 
