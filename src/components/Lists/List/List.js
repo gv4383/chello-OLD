@@ -81,7 +81,8 @@ class List extends Component {
     const displayTodoList = todoList.map((listItem, i) => {
       return (
         <div key={i}>
-          <p onClick={() => this.deleteOnClickHandler(i)}>{listItem}</p>
+          <p>{listItem}</p>
+          <button onClick={() => this.deleteOnClickHandler(i)}>X</button>
         </div>
       );
     });
