@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class List extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class List extends Component {
   };
 
   // Curry submit handler so that it can take additional arguments (id and description)
-  onSubmitHandler = (id, body) => event => {
+  editListNameOnSubmitHandler = (id, body) => event => {
     // Prevents page from reloading everytime a submit occurs
     event.preventDefault();
 
@@ -40,6 +41,19 @@ class List extends Component {
 
     // Sets editing state back to false
     this.setState({ editName: false });
+  };
+
+  addNewListItemOnSubmitHandler = event => {
+    event.preventDefault();
+
+    const { listId, todoList, addNewListItem } = this.props;
+    const { newListItem } = this.state;
+
+    addNewListItem(listId, todoList, newListItem);
+    this.setState({
+      addItem: false,
+      newListItem: ""
+    });
   };
 
   // Deletes a list item when the item is clicked
@@ -77,7 +91,7 @@ class List extends Component {
         <div className="individual-list">
           <form
             name="editNameInput"
-            onSubmit={this.onSubmitHandler(listId, listNameInput)}
+            onSubmit={this.editListNameOnSubmitHandler(listId, listNameInput)}
           >
             <input
               value={listNameInput}
@@ -94,13 +108,15 @@ class List extends Component {
         <div className="individual-list">
           <h3>{listName}</h3>
           {todoList && displayTodoList}
-          <input
-            placeholder="Enter a new to-do item."
-            value={newListItem}
-            name="newListItem"
-            onChange={this.onChangeHandler}
-          />
-          <button>Add!</button>
+          <form onSubmit={this.addNewListItemOnSubmitHandler}>
+            <input
+              placeholder="Enter a new to-do item."
+              value={newListItem}
+              name="newListItem"
+              onChange={this.onChangeHandler}
+            />
+            <button>Add!</button>
+          </form>
           <button onClick={this.toggleAddOnClickHandler}>Cancel</button>
           <button onClick={deleteList}>Delete List</button>
         </div>

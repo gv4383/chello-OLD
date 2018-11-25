@@ -63,6 +63,14 @@ class Lists extends Component {
     });
   };
 
+  addNewListItem = (id, currentTodoList, newItem) => {
+    let newTodoList = [...currentTodoList, newItem];
+
+    axios.put(`/api/lists/${id}`, { todoList: newTodoList }).then(response => {
+      this.setState({ lists: response.data });
+    });
+  };
+
   deleteListItem = (listId, itemId) => {
     axios.delete(`/api/lists/${listId}/listItem/${itemId}`).then(response => {
       this.setState({
@@ -84,6 +92,7 @@ class Lists extends Component {
             listName={list.listName}
             todoList={list.todoList}
             editListName={this.editListName}
+            addNewListItem={this.addNewListItem}
             deleteListItem={this.deleteListItem}
           />
         </div>
