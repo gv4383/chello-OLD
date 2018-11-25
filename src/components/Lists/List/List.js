@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+
+import TodoListItem from "./TodoListItem/TodoListItem";
 
 class List extends Component {
   constructor(props) {
@@ -80,9 +81,16 @@ class List extends Component {
     // Iterates through todoList array in local state and renders and renders the todo items for that specific list
     const displayTodoList = todoList.map((listItem, i) => {
       return (
+        // <div key={i}>
+        //   <p>{listItem}</p>
+        //   <button onClick={() => this.deleteOnClickHandler(i)}>X</button>
+        // </div>
+
         <div key={i}>
-          <p>{listItem}</p>
-          <button onClick={() => this.deleteOnClickHandler(i)}>X</button>
+          <TodoListItem
+            listItem={listItem}
+            deleteOnClickHandler={() => this.deleteOnClickHandler(i)}
+          />
         </div>
       );
     });

@@ -6,10 +6,12 @@ class TodoListItem extends Component {
   }
 
   render() {
+    const { listItem, deleteOnClickHandler } = this.props;
+
     return (
       <div className="todo-list-item">
-        <p>List Item</p>
-        <button>X</button>
+        <p>{listItem}</p>
+        <button onClick={deleteOnClickHandler}>X</button>
       </div>
     );
   }
