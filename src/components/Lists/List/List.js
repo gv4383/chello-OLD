@@ -7,12 +7,14 @@ class List extends Component {
     this.state = {
       editName: false,
       addItem: false,
-      listNameInput: this.props.listName
+      listNameInput: this.props.listName,
+      newListItem: ""
     };
   }
 
   // Tracks user's input and stores in local state
   onChangeHandler = event => {
+    console.log(`${event.target.name}: ${event.target.value}`);
     this.setState({ [event.target.name]: event.target.value });
   };
 
@@ -59,7 +61,7 @@ class List extends Component {
 
   render() {
     const { deleteList, listId, listName, todoList } = this.props;
-    const { editName, addItem, listNameInput } = this.state;
+    const { editName, addItem, listNameInput, newListItem } = this.state;
 
     // Iterates through todoList array in local state and renders and renders the todo items for that specific list
     const displayTodoList = todoList.map((listItem, i) => {
@@ -92,7 +94,12 @@ class List extends Component {
         <div className="individual-list">
           <h3>{listName}</h3>
           {todoList && displayTodoList}
-          <input placeholder="Enter a new to-do item." />
+          <input
+            placeholder="Enter a new to-do item."
+            value={newListItem}
+            name="newListItem"
+            onChange={this.onChangeHandler}
+          />
           <button>Add!</button>
           <button onClick={this.toggleAddOnClickHandler}>Cancel</button>
           <button onClick={deleteList}>Delete List</button>
