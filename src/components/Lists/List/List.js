@@ -75,7 +75,13 @@ class List extends Component {
   };
 
   render() {
-    const { deleteList, listId, listName, todoList } = this.props;
+    const {
+      addNewListItem,
+      deleteList,
+      listId,
+      listName,
+      todoList
+    } = this.props;
     const { editName, addItem, listNameInput, newListItem } = this.state;
 
     // Iterates through todoList array in local state and renders and renders the todo items for that specific list
@@ -88,7 +94,10 @@ class List extends Component {
 
         <div key={i}>
           <TodoListItem
+            listId={listId}
             listItem={listItem}
+            todoList={todoList}
+            addNewListItem={addNewListItem}
             deleteOnClickHandler={() => this.deleteOnClickHandler(i)}
           />
         </div>

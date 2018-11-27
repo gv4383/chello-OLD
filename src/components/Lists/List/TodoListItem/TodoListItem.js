@@ -19,6 +19,15 @@ class TodoListItem extends Component {
     this.setState({ editListItem: !editListItem });
   };
 
+  onSubmitHandler = event => {
+    event.preventDefault();
+
+    const { listId, todoList } = this.props;
+    const { listItemInput } = this.state;
+
+    this.props.addNewListItem(listId, todoList, listItemInput);
+  };
+
   render() {
     const { listItem, deleteOnClickHandler } = this.props;
     const { listItemInput, editListItem } = this.state;
@@ -26,8 +35,10 @@ class TodoListItem extends Component {
     if (editListItem) {
       return (
         <div className="todo-list-item">
-          <input value={listItemInput} onChange={this.onChangeHandler} />
-          <button>Submit</button>
+          <form onSubmit={this.onSubmitHandler}>
+            <input value={listItemInput} onChange={this.onChangeHandler} />
+            <button>Submit</button>
+          </form>
           <button onClick={this.editListItemOnClickHandler}>Cancel</button>
         </div>
       );
