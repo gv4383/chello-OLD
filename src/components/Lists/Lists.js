@@ -63,9 +63,12 @@ class Lists extends Component {
     });
   };
 
+  // Adds a new to-do list item to the specified list
   addNewListItem = (id, currentTodoList, newItem) => {
+    // creates a new array with the newly added to-do list item
     let newTodoList = [...currentTodoList, newItem];
 
+    // Sends the new array within the body
     axios.put(`/api/lists/${id}`, { todoList: newTodoList }).then(response => {
       this.setState({ lists: response.data });
     });
