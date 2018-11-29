@@ -44,6 +44,7 @@ class List extends Component {
     this.setState({ editName: false });
   };
 
+  // On submit handler that adds a new to-do list item to a specified to-do list
   addNewListItemOnSubmitHandler = event => {
     event.preventDefault();
 
