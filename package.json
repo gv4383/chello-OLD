@@ -16,7 +16,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jtest": "jest",
+    "jtest:watch": "jest --watch",
+    "jtest:coverage": "jest --coverage --colors"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -28,5 +31,11 @@
     "not op_mini all"
   ],
   "proxy": "http://localhost:3001",
-  "main": "server/index.js"
+  "main": "server/index.js",
+  "devDependencies": {
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0",
+    "enzyme-to-json": "^3.3.4",
+    "jest": "^23.6.0"
+  }
 }
