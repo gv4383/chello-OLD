@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component } from 'react';
+import axios from 'axios';
 
-import List from "./List/List";
+import List from './List/List';
 
 class Lists extends Component {
   constructor(props) {
@@ -9,14 +9,14 @@ class Lists extends Component {
 
     // Local State
     this.state = {
-      listName: "",
-      lists: []
+      listName: '',
+      lists: [],
     };
   }
 
   // Gets list of list names from server and stores in local state
   componentDidMount = () => {
-    axios.get("/api/lists").then(response => {
+    axios.get('/api/lists').then(response => {
       this.setState({ lists: response.data });
     });
   };
@@ -32,15 +32,15 @@ class Lists extends Component {
 
     // resets local user input state
     this.setState({
-      listName: ""
+      listName: '',
     });
   };
 
   // Adds a new list name to the list of list names in server
   addList = () => {
-    axios.post("/api/lists").then(response => {
+    axios.post('/api/lists').then(response => {
       this.setState({
-        lists: response.data
+        lists: response.data,
       });
     });
   };
@@ -49,7 +49,7 @@ class Lists extends Component {
   editListName = (id, listName) => {
     axios.put(`/api/lists/name/${id}`, { listName }).then(response => {
       this.setState({
-        lists: response.data
+        lists: response.data,
       });
     });
   };
@@ -58,7 +58,7 @@ class Lists extends Component {
   deleteList = id => {
     axios.delete(`/api/lists/${id}`).then(response => {
       this.setState({
-        lists: response.data
+        lists: response.data,
       });
     });
   };
@@ -77,7 +77,7 @@ class Lists extends Component {
   deleteListItem = (listId, itemId) => {
     axios.delete(`/api/lists/${listId}/listItem/${itemId}`).then(response => {
       this.setState({
-        lists: response.data
+        lists: response.data,
       });
     });
   };

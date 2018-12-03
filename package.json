@@ -19,7 +19,8 @@
     "eject": "react-scripts eject",
     "jtest": "jest",
     "jtest:watch": "jest --watch",
-    "jtest:coverage": "jest --coverage --colors"
+    "jtest:coverage": "jest --coverage --colors",
+    "prettier": "prettier --write src/**/*.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,6 +37,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.7.0",
     "enzyme-to-json": "^3.3.4",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "prettier": "^1.15.3"
   }
 }

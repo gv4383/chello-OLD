@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
-import TodoListItem from "./TodoListItem/TodoListItem";
+import TodoListItem from './TodoListItem/TodoListItem';
 
 class List extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class List extends Component {
       editName: false,
       addItem: false,
       listNameInput: this.props.listName,
-      newListItem: ""
+      newListItem: '',
     };
   }
 
@@ -28,7 +28,7 @@ class List extends Component {
   // Sets editing to false
   cancelEditHandler = () => {
     this.setState({
-      editName: false
+      editName: false,
     });
   };
 
@@ -54,7 +54,7 @@ class List extends Component {
     addNewListItem(listId, todoList, newListItem);
     this.setState({
       addItem: false,
-      newListItem: ""
+      newListItem: '',
     });
   };
 
@@ -76,13 +76,7 @@ class List extends Component {
   };
 
   render() {
-    const {
-      addNewListItem,
-      deleteList,
-      listId,
-      listName,
-      todoList
-    } = this.props;
+    const { addNewListItem, deleteList, listId, listName, todoList } = this.props;
     const { editName, addItem, listNameInput, newListItem } = this.state;
 
     // Iterates through todoList array in local state and renders and renders the todo items for that specific list
@@ -112,11 +106,7 @@ class List extends Component {
             name="editNameInput"
             onSubmit={this.editListNameOnSubmitHandler(listId, listNameInput)}
           >
-            <input
-              value={listNameInput}
-              name="listNameInput"
-              onChange={this.onChangeHandler}
-            />
+            <input value={listNameInput} name="listNameInput" onChange={this.onChangeHandler} />
             <button>Submit</button>
           </form>
           <button onClick={this.cancelEditHandler}>Cancel</button>

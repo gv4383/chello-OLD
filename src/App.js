@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Lists from "./components/Lists/Lists";
+import React, { Component } from 'react';
+import Lists from './components/Lists/Lists';
 
 // import "./App.css";
-import "./sass/css/main.css";
+import './sass/css/main.css';
 
 class App extends Component {
   render() {

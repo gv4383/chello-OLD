@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class TodoListItem extends Component {
   constructor(props) {
@@ -6,7 +6,7 @@ class TodoListItem extends Component {
 
     this.state = {
       listItemInput: this.props.listItem,
-      editListItem: false
+      editListItem: false,
     };
   }
 
